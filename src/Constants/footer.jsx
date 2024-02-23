@@ -5,24 +5,24 @@ const Footer = () => {
         <p>Questions? Call 000-800-919-1694</p>
       </div>
       <div className=" mb-[3rem] flex justify-between ">
-        <a className=" " href="">
+        <a className=" " href="#">
           Privacy
         </a>
-        <a className=" " href="">
+        <a className=" " href="#">
           cookie Preferences
         </a>
-        <a className="  " href="">
+        <a className="  " href="#">
           Corporate Information
         </a>
       </div>
       <div className=" flex justify-between ">
-        <a className=" " href="">
+        <a className=" " href="#">
           FAQ
         </a>
-        <a className=" " href="">
+        <a className=" " href="#">
           Help Centre
         </a>
-        <a className="  " href="">
+        <a className="  " href="#">
           Terms of Use
         </a>
       </div>

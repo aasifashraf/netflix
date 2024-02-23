@@ -1,8 +1,14 @@
 // import "./App.css";
 import Body from "./Body";
-import { Background } from "./Constants/Links";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
+  const browserRouter = createBrowserRouter([
+    {
+      path: "/",
+      component: <Body />,
+    },
+  ]);
   return (
     <div className="App">
       <Body />

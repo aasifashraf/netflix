@@ -1,5 +1,16 @@
+import SignUp from "./SignUp";
+import { useState } from "react";
+
 const Signin = () => {
-  return (
+  const [login, setLogin] = useState(true);
+
+  const HandleSignup = () => {
+    setLogin(!login);
+  };
+
+  return login === false ? (
+    <SignUp />
+  ) : (
     <form action="">
       <div className=" flex flex-col bg-black opacity-85 p-[5rem] rounded-md w-[35rem]">
         <h1 className=" w-full text-white font-bold mb-[2rem] text-[2rem]">
@@ -22,9 +33,10 @@ const Signin = () => {
           Forgot password?
         </p>
         <p className=" text-white mt-[3rem]">
-          New to Netflix?{" "}
-          <span className=" font-bold cursor-pointer hover:underline">
-            {" "}
+          New to Netflix?
+          <span
+            className=" font-bold cursor-pointer hover:underline"
+            onClick={HandleSignup}>
             Sign up now.
           </span>
         </p>
