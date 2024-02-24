@@ -11,13 +11,13 @@ const Body = () => {
         alt="Background"></img>
       <div className=" absolute w-full h-[160%] bg-black opacity-60 "></div>
       <img
-        className=" absolute top-0 left-[10rem] w-[15rem] z-[1]  "
+        className=" absolute top-0 left-[8rem] w-[12rem] z-[1]  "
         src={Logo}
         alt="Logo"></img>
       <div className=" absolute w-full h-full flex justify-center items-center  ">
         <Signin />
       </div>
-      <div className=" absolute text-white bottom-[-28.5rem]">
+      <div className=" absolute text-white bottom-[-22.7rem]">
         <Footer />
       </div>
     </div>

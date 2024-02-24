@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <div className=" w-[222dvh] p-[5rem] bg-black opacity-85">
-      <div className=" mb-[5rem]">
+    <div className=" w-[222dvh] p-[3rem] bg-black opacity-85">
+      <div className=" mb-[3rem]">
         <p>Questions? Call 000-800-919-1694</p>
       </div>
       <div className=" mb-[3rem] flex justify-between ">

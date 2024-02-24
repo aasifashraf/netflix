@@ -15,5 +15,5 @@ export const formValidation = (email, password, name) => {
     return "Please enter a valid password";
   }
 
-  return "";
+  return null;
 };
