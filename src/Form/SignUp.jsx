@@ -3,12 +3,13 @@ import { useRef, useState } from "react";
 import { formValidation } from "./FormValidation";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../Constants/firebase";
 
 const SignUp = () => {
   const [login, setLogin] = useState(true);
   const [errorMassage, seterrorMassage] = useState("");
 
-  initializeApp();
+  initializeApp(firebaseConfig);
 
   const name = useRef(null);
   const email = useRef(null);
@@ -23,6 +24,7 @@ const SignUp = () => {
 
     seterrorMassage(massage);
     console.log(massage);
+
     if (massage === null) {
       const auth = getAuth();
       createUserWithEmailAndPassword(
@@ -74,7 +76,7 @@ const SignUp = () => {
           ref={email}
         />
         <input
-          className=" my-[1.5rem] p-2 rounded-sm outline-none opacity-100 bg-black border-[1px] text-white text-[.9rem] cursor-pointer"
+          className=" my-[1.5rem] p-2 rounded-sm outline-none opacity-100 bg-black border-[1px] text-white text-[.9rem]"
           type="password"
           placeholder="Enter Password"
           ref={password}
