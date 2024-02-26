@@ -1,11 +1,22 @@
 import Signin from "./SignIn";
 import { useRef, useState } from "react";
 import { formValidation } from "./FormValidation";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../Constants/firebase";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../Constants/StoreSlice";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [login, setLogin] = useState(true);
   const [errorMassage, seterrorMassage] = useState("");
 
@@ -36,16 +47,49 @@ const SignUp = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+
+          const auth = getAuth();
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
           //...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          seterrorMassage("Account is already registered with this email");
           console.log(errorCode, errorMessage);
           //..
         });
     }
   };
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/Browse");
+        // ...
+      } else {
+        dispatch(removeUser);
+        // User is signed out
+        // ...
+        navigate("/");
+      }
+    });
+  }, []);
 
   const HandleSignIn = () => {
     setLogin(!login);

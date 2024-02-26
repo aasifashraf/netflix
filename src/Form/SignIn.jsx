@@ -1,17 +1,46 @@
 import { formValidation } from "./FormValidation";
 import SignUp from "./SignUp";
 import { useRef, useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../Constants/firebase";
+// import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
+  // const navigate = useNavigate();
   const [login, setLogin] = useState(true);
   const [errorMassage, seterrorMassage] = useState("");
 
   const email = useRef(null);
   const password = useRef(null);
 
+  initializeApp(firebaseConfig);
+
   const handleError = () => {
     const massage = formValidation(email.current.value, password.current.value);
     seterrorMassage(massage);
+
+    if (massage === null) {
+      const auth = getAuth();
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // navigate("/Browse");
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          seterrorMassage("Username or Password is incorrect");
+        });
+    }
   };
 
   const HandleSignup = () => {
@@ -42,7 +71,7 @@ const Signin = () => {
           ref={password}
           placeholder="Enter Password"
         />
-        <p className=" text-red-600 font-thin">{errorMassage}</p>
+        <p className="text-red-600 text-[.8rem] mt-[1rem]">{errorMassage}</p>
         <button
           className=" bg-[red] p-1 py-3 rounded-sm text-white mt-[2rem] opacity-100 text-[.8rem]"
           onClick={handleError}>
