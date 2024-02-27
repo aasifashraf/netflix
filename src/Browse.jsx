@@ -1,12 +1,14 @@
 import { getAuth, signOut } from "firebase/auth";
 import { Logo } from "./Constants/Links";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "./Constants/StoreSlice";
 
 const Browse = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // const name = useSelector((state) => state.user.displayName);
+  // console.log(name);
   const handlesignout = () => {
     const auth = getAuth();
     signOut(auth)
@@ -24,6 +26,7 @@ const Browse = () => {
       <div className="header w-full bg-gradient-to-b from-gray-400 to-transparent flex items-center justify-between">
         <img className="w-[10rem] " src={Logo} alt="" />
         <div className=" flex items-center mr-[1rem]">
+          {/* <p>{name}</p> */}
           <div className=" w-[2rem] h-[2rem] bg-gray-500 rounded-full"></div>
           <button className=" ml-[1rem] text-black" onClick={handlesignout}>
             Sign Out

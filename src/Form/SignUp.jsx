@@ -54,6 +54,13 @@ const SignUp = () => {
             photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
             .then(() => {
+              // dispatch(
+              //   addUser({
+              //     uid: user.uid,
+              //     email: user.email,
+              //     name: user.displayName,
+              //   })
+              // );
               // Profile updated!
               // ...
             })
@@ -78,12 +85,21 @@ const SignUp = () => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        const { uid, email } = user;
+        const { displayName, photoURL } = auth;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+
         navigate("/Browse");
         // ...
       } else {
-        dispatch(removeUser);
+        // dispatch(removeUser);
         // User is signed out
         // ...
         navigate("/");

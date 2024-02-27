@@ -42,7 +42,7 @@ const Body = () => {
       <div className=" absolute w-full h-full flex justify-center items-center  ">
         <Signin />
       </div>
-      <div className="w-full absolute text-white bottom-[-22.7rem]">
+      <div className="w-full absolute text-white bottom-[-22.7rem] flex-wrap">
         <Footer />
       </div>
     </div>

@@ -66,12 +66,12 @@ const Signin = () => {
           placeholder="Enter Email"
         />
         <input
-          className=" mt-[1.5rem] p-2 rounded-sm outline-none opacity-100 bg-black border-[1px] text-white text-[.9rem]"
+          className=" my-[1.5rem] p-2 rounded-sm outline-none opacity-100 bg-black border-[1px] text-white text-[.9rem]"
           type="password"
           ref={password}
           placeholder="Enter Password"
         />
-        <p className="text-red-600 text-[.8rem] mt-[1rem]">{errorMassage}</p>
+        <p className=" text-red-600 text-[.8rem]">{errorMassage}</p>
         <button
           className=" bg-[red] p-1 py-3 rounded-sm text-white mt-[2rem] opacity-100 text-[.8rem]"
           onClick={handleError}>
