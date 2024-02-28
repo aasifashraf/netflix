@@ -5,10 +5,8 @@ import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "./Constants/StoreSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const Body = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     const auth = getAuth();
@@ -18,13 +16,11 @@ const Body = () => {
         // https://firebase.google.com/docs/reference/js/auth.user
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
-        navigate("/Browse");
         // ...
       } else {
         dispatch(removeUser);
         // User is signed out
         // ...
-        navigate("/");
       }
     });
   }, []);

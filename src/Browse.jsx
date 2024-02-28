@@ -1,12 +1,42 @@
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { Logo } from "./Constants/Links";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "./Constants/StoreSlice";
+import { addUser, removeUser } from "./Constants/StoreSlice";
+import { useEffect } from "react";
 
 const Browse = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email } = user;
+        const { displayName, photoURL } = auth;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+
+        navigate("/Browse");
+        // ...
+      } else {
+        dispatch(removeUser);
+        // User is signed out
+        // ...
+        navigate("/");
+      }
+    });
+  }, []);
+
   // const name = useSelector((state) => state.user.displayName);
   // console.log(name);
   const handlesignout = () => {
@@ -15,7 +45,6 @@ const Browse = () => {
       .then(() => {
         // Sign-out successful.
         dispatch(removeUser());
-        navigate("/");
       })
       .catch((error) => {
         // An error happened.

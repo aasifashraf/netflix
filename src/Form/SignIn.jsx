@@ -1,13 +1,20 @@
 import { formValidation } from "./FormValidation";
 import SignUp from "./SignUp";
-import { useRef, useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useEffect, useRef, useState } from "react";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../Constants/firebase";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { addUser, removeUser } from "../Constants/StoreSlice";
+import { useDispatch } from "react-redux";
 
 const Signin = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [login, setLogin] = useState(true);
   const [errorMassage, seterrorMassage] = useState("");
 
@@ -15,6 +22,34 @@ const Signin = () => {
   const password = useRef(null);
 
   initializeApp(firebaseConfig);
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email } = user;
+        const { displayName, photoURL } = auth;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+
+        navigate("/Browse");
+        // ...
+      } else {
+        dispatch(removeUser);
+        // User is signed out
+        // ...
+        navigate("/");
+      }
+    });
+  }, []);
 
   const handleError = () => {
     const massage = formValidation(email.current.value, password.current.value);
@@ -31,8 +66,6 @@ const Signin = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          // navigate("/Browse");
-
           // ...
         })
         .catch((error) => {

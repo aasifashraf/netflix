@@ -8,14 +8,12 @@ import {
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../Constants/firebase";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../Constants/StoreSlice";
 import { useDispatch } from "react-redux";
 
 const SignUp = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [login, setLogin] = useState(true);
   const [errorMassage, seterrorMassage] = useState("");
@@ -96,13 +94,11 @@ const SignUp = () => {
           })
         );
 
-        navigate("/Browse");
         // ...
       } else {
         // dispatch(removeUser);
         // User is signed out
         // ...
-        navigate("/");
       }
     });
   }, []);
