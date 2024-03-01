@@ -32,7 +32,7 @@ const SignUp = () => {
     );
 
     seterrorMassage(massage);
-    console.log(massage);
+    // console.log(massage);
 
     if (massage === null) {
       const auth = getAuth();
@@ -44,7 +44,7 @@ const SignUp = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          // console.log(user);
 
           const auth = getAuth();
           updateProfile(user, {
@@ -52,13 +52,13 @@ const SignUp = () => {
             photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
             .then(() => {
-              // dispatch(
-              //   addUser({
-              //     uid: user.uid,
-              //     email: user.email,
-              //     name: user.displayName,
-              //   })
-              // );
+              dispatch(
+                addUser({
+                  // uid: user.uid,
+                  // email: user.email,
+                  displayName: name.current.value,
+                })
+              );
               // Profile updated!
               // ...
             })
@@ -72,7 +72,7 @@ const SignUp = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           seterrorMassage("Account is already registered with this email");
-          console.log(errorCode, errorMessage);
+          // console.log(errorCode, errorMessage);
           //..
         });
     }
@@ -83,17 +83,16 @@ const SignUp = () => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        const { uid, email } = user;
-        const { displayName, photoURL } = auth;
-        dispatch(
-          addUser({
-            uid: uid,
-            email: email,
-            displayName: displayName,
-            photoURL: photoURL,
-          })
-        );
-
+        // const { uid, email } = user;
+        // const { displayName, photoURL } = auth;
+        // dispatch(
+        //   addUser({
+        //     uid: uid,
+        //     email: email,
+        //     displayName: displayName,
+        //     photoURL: photoURL,
+        //   })
+        // );
         // ...
       } else {
         // dispatch(removeUser);

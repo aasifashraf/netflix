@@ -29,16 +29,16 @@ const Signin = () => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        const { uid, email } = user;
-        const { displayName, photoURL } = auth;
-        dispatch(
-          addUser({
-            uid: uid,
-            email: email,
-            displayName: displayName,
-            photoURL: photoURL,
-          })
-        );
+        // const { uid, email } = user;
+        // const { displayName, photoURL } = auth;
+        // dispatch(
+        //   addUser({
+        //     uid: uid,
+        //     email: email,
+        //     displayName: displayName,
+        //     photoURL: photoURL,
+        //   })
+        // );
 
         navigate("/Browse");
         // ...
@@ -65,7 +65,7 @@ const Signin = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          // console.log(user);
           // ...
         })
         .catch((error) => {

@@ -21,7 +21,7 @@ const Footer = () => {
           Corporate Information
         </a>
       </div>
-      <div className=" flex justify-between flex flex-wrap ">
+      <div className=" flex justify-between flex-wrap ">
         <a className=" " href="#">
           Account
         </a>

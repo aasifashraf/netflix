@@ -1,7 +1,7 @@
 // import "./App.css";
 import { Provider } from "react-redux";
 import Body from "./Body";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import appStore from "./Constants/appStore";
 import Browse from "./Browse";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

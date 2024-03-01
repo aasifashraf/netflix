@@ -1,14 +1,18 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { Logo } from "./Constants/Links";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./Constants/StoreSlice";
 import { useEffect } from "react";
+import useMovieslist from "./Hooks/useMovieslist";
+import TopSectionBrowse from "./TopSectionBrowse";
 
 const Browse = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useMovieslist();
+  console.log(useMovieslist());
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -17,6 +21,7 @@ const Browse = () => {
         // https://firebase.google.com/docs/reference/js/auth.user
         const { uid, email } = user;
         const { displayName, photoURL } = auth;
+        // console.log(displayName);
         dispatch(
           addUser({
             uid: uid,
@@ -62,6 +67,7 @@ const Browse = () => {
           </button>
         </div>
       </div>
+      <TopSectionBrowse />
     </div>
   );
 };
