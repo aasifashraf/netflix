@@ -45,27 +45,6 @@ const SignUp = () => {
           // Signed in
           const user = userCredential.user;
           // console.log(user);
-
-          const auth = getAuth();
-          updateProfile(user, {
-            displayName: name.current.value,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
-          })
-            .then(() => {
-              dispatch(
-                addUser({
-                  // uid: user.uid,
-                  // email: user.email,
-                  displayName: name.current.value,
-                })
-              );
-              // Profile updated!
-              // ...
-            })
-            .catch((error) => {
-              // An error occurred
-              // ...
-            });
           //...
         })
         .catch((error) => {
@@ -83,13 +62,13 @@ const SignUp = () => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        // const { uid, email } = user;
-        // const { displayName, photoURL } = auth;
+        // const { uid, email, displayName } = user;
+        // const { photoURL } = auth.user.photoURL;
         // dispatch(
         //   addUser({
         //     uid: uid,
         //     email: email,
-        //     displayName: displayName,
+        //     displayName: "text",
         //     photoURL: photoURL,
         //   })
         // );
