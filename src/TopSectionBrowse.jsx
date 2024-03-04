@@ -10,9 +10,13 @@ const TopSectionBrowse = () => {
   const { id } = movielistapi[0];
 
   return (
-    <div className=" relative">
-      <MainOverlay />
-      <Mainpage trailerId={id} />
+    <div className=" relative aspect-video">
+      <div className=" absolute z-10">
+        <MainOverlay />
+      </div>
+      <div className="absolute">
+        <Mainpage trailerId={id} />
+      </div>
     </div>
   );
 };
