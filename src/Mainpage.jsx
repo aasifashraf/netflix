@@ -24,18 +24,21 @@ const Mainpage = ({ trailerId }) => {
   }, []);
 
   return (
-    <div className=" aspect-video">
+    <div className=" w-screen ">
       <iframe
-        className="  absolute  w-screen"
+        className="  absolute  w-screen aspect-video"
         // width="560"
         // height="315"
         src={
-          "https://www.youtube.com/embed/" + youtubeKey + "?si=gA0btiHsdigjII_F"
+          "https://www.youtube.com/embed/" +
+          youtubeKey +
+          "?controls=0&mute=1&showinfo=0&rel=0&autoplay=1&loop=1&cc_load_policy=3&iv_load_policy=0&autohide=0&modestbranding=1&" +
+          "?si=gA0btiHsdigjII_F"
         }
-        // title="YouTube video player"
+        title="YouTube video player"
         // frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen></iframe>
+        // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      ></iframe>
     </div>
   );
 };

@@ -1,11 +1,16 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { Logo } from "./Constants/Links";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./Constants/StoreSlice";
 import { useEffect } from "react";
 import useMovieslist from "./Hooks/useMovieslist";
 import TopSectionBrowse from "./TopSectionBrowse";
+import SecondSection from "./SecondSection";
+import MoviesList from "./MoviesList";
+import usePopularMovies from "./Hooks/usePopularMovies";
+import useTopRated from "./Hooks/useTopRated";
+import useUpComing from "./Hooks/useUpcoming";
 
 const Browse = () => {
   // const profileName = useSelector((store) => store);
@@ -14,6 +19,10 @@ const Browse = () => {
   const dispatch = useDispatch();
 
   useMovieslist();
+  usePopularMovies();
+  useTopRated();
+  useUpComing();
+
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -55,18 +64,25 @@ const Browse = () => {
       });
   };
   return (
-    <div>
-      <div className="header w-full bg-gradient-to-b from-gray-400 to-transparent flex items-center justify-between">
+    <div className=" w-screen bg-black">
+      <div className="header w-screen flex items-center justify-between absolute z-20 bg-gradient-to-b from-black">
         <img className="w-[10rem] " src={Logo} alt="" />
-        <div className=" flex items-center mr-[1rem]">
+        <div className=" flex items-center mr-[1.5rem]">
           {/* <p>{}</p> */}
-          <div className=" w-[2rem] h-[2rem] bg-gray-500 rounded-full"></div>
-          <button className=" ml-[1rem] text-black" onClick={handlesignout}>
+          <div className=" w-[2rem] h-[2rem] bg-white bg-opacity-50 rounded-full"></div>
+          <button className=" ml-[1rem] text-white" onClick={handlesignout}>
             Sign Out
           </button>
         </div>
       </div>
-      <TopSectionBrowse />
+      <div className=" aspect-video relative mb-0 z-10">
+        <TopSectionBrowse />
+      </div>
+      <div className="relative aspect-video">
+        <div className="relative -top-40 z-20 ">
+          <SecondSection />
+        </div>
+      </div>
     </div>
   );
 };
