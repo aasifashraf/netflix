@@ -15,7 +15,7 @@ const TopSectionBrowse = () => {
         <MainOverlay />
       </div>
       <div className="absolute">
-        <Mainpage trailerId={id} />
+        <Mainpage trailerId={id} key={id} />
       </div>
     </div>
   );

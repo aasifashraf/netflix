@@ -1,20 +1,22 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { Logo } from "./Constants/Links";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "./Constants/StoreSlice";
 import { useEffect } from "react";
 import useMovieslist from "./Hooks/useMovieslist";
 import TopSectionBrowse from "./TopSectionBrowse";
 import SecondSection from "./SecondSection";
-import MoviesList from "./MoviesList";
-import usePopularMovies from "./Hooks/usePopularMovies";
 import useTopRated from "./Hooks/useTopRated";
 import useUpComing from "./Hooks/useUpcoming";
+import useRandomNumber from "./Hooks/useRandomNumber";
+import usePopularMovies from "./Hooks/usePopularMovies";
+import { addRandomNumber } from "./Constants/MoviesSlice";
+// import { useSelector } from "react-redux";
 
 const Browse = () => {
-  // const profileName = useSelector((store) => store);
-  // console.log(profileName);
+  const profileName = useSelector((store) => store.movies);
+  console.log(profileName);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -22,9 +24,11 @@ const Browse = () => {
   usePopularMovies();
   useTopRated();
   useUpComing();
+  // useRandomNumber();
 
   useEffect(() => {
     const auth = getAuth();
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties

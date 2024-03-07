@@ -17,7 +17,7 @@ const useMovieslist = () => {
 
   useEffect(() => {
     MovieListApi();
-    console.log(MovieListApi());
+    // console.log(MovieListApi());
   });
 };
 
