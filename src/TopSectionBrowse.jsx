@@ -2,6 +2,7 @@ import React from "react";
 import MainOverlay from "./MainOverlay";
 import Mainpage from "./Mainpage";
 import { useSelector } from "react-redux";
+import useRandomNumber from "./Hooks/useRandomNumber";
 
 const TopSectionBrowse = () => {
   const movielistapi = useSelector((store) => store.movies?.nowPlayingMovies);
@@ -15,7 +16,7 @@ const TopSectionBrowse = () => {
         <MainOverlay />
       </div>
       <div className="absolute">
-        <Mainpage trailerId={id} key={id} />
+        <Mainpage trailerId={id} />
       </div>
     </div>
   );

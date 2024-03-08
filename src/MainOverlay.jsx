@@ -1,11 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import useRandomNumber from "./Hooks/useRandomNumber";
 
 const MainOverlay = () => {
   const movielist = useSelector((store) => store.movies?.nowPlayingMovies);
-  //   console.log(movielist);
-  if (!movielist) return;
-  const { original_title, overview } = movielist[0];
+
+  const randomNumbervalue = useSelector((store) => store.movies?.randomNumber);
+  console.log(randomNumbervalue);
+  useRandomNumber();
+
+  console.log(randomNumbervalue);
+
+  if ((!movielist, !randomNumbervalue)) return;
+  const { original_title, overview } = movielist[randomNumbervalue];
   return (
     <div className=" aspect-video w-screen bg-white bg-opacity-20 px-[1rem] bg-gradient-to-r from-black  ">
       <div className=" absolute bottom-[30%] left-0 mx-[2dvw]">

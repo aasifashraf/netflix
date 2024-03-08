@@ -24,9 +24,9 @@ const Mainpage = ({ trailerId }) => {
   }, []);
 
   return (
-    <div className=" w-screen ">
+    <div className=" w-screen">
       <iframe
-        className="  absolute  w-screen aspect-video"
+        className="  absolute  w-screen aspect-video -top-20"
         // width="560"
         // height="315"
         src={

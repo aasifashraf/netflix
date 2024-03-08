@@ -11,12 +11,11 @@ import useTopRated from "./Hooks/useTopRated";
 import useUpComing from "./Hooks/useUpcoming";
 import useRandomNumber from "./Hooks/useRandomNumber";
 import usePopularMovies from "./Hooks/usePopularMovies";
-import { addRandomNumber } from "./Constants/MoviesSlice";
 // import { useSelector } from "react-redux";
 
 const Browse = () => {
-  const profileName = useSelector((store) => store.movies);
-  console.log(profileName);
+  // const profileName = useSelector((store) => store.movies);
+  // console.log(profileName);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,7 +23,6 @@ const Browse = () => {
   usePopularMovies();
   useTopRated();
   useUpComing();
-  // useRandomNumber();
 
   useEffect(() => {
     const auth = getAuth();
